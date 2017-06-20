@@ -41,7 +41,12 @@ app.post('/items', function(req, res) {
 		} else {
 			res.json(data);
 			console.log('recieved data',data);
-			
+			// AllTweets (function(input) {
+			// 	for(let i = 0; i < input.length; i++) {
+			// 		saveInDb(input[i]);
+			// 	}
+			// });
+
 		}
 	});
 	//console.log('req.body----->',req.body.Body);

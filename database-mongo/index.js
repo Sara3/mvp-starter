@@ -13,7 +13,7 @@ db.once('open', function() {
 
 var itemSchema = mongoose.Schema({
   date: {type: Date},// number of tweets
-  text: {type: String}
+  text: {type: String, unique: true}
 });
 
 var Item = mongoose.model('Item', itemSchema);
