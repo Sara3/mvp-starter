@@ -1,6 +1,8 @@
 ul li {
 	border: 2px solid #4099FF;
 	margin: 5px;
-	padding: 5px;
+	padding: 8px;
+	border-radius: 8px;
+	width: 500px;
 	list-style: none;
 }
