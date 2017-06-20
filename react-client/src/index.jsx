@@ -35,6 +35,9 @@ class App extends React.Component {
       url: '/items',
       data: {Body: input},
       success: (data) => {
+        this.setState ({
+          items: data
+        });
         console.log('posted the term', data);
       },
       error: (err) => {

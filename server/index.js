@@ -31,19 +31,25 @@ app.get('/items', function (req, res) {
   });
 });
 
+
+
 app.post('/items', function(req, res) {
 	let input = req.body.Body; 
 	items.findTweets(input, function (err, data) {
 		if(err) {
-			res.sendStatus(500);
+			return res.sendStatus(500);
 		} else {
-			//res.json(data);
+			res.json(data);
 			console.log('recieved data',data);
 		}
 	});
 	//console.log('req.body----->',req.body.Body);
-	res.end('got the get')
-})
+	//res.end('got the get')
+});
+
+
+
+
 
 // get data from twitter API
 var getTweets = function() {
