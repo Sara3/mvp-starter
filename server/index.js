@@ -41,9 +41,7 @@ app.post('/items', function(req, res) {
 		} else {
 			res.json(data);
 			console.log('recieved data',data);
-			AllTweets (function(input) {
-				console.log('this is callded with --------------------------------->', input);
-			});
+			
 		}
 	});
 	//console.log('req.body----->',req.body.Body);
@@ -52,34 +50,41 @@ app.post('/items', function(req, res) {
 
 
 
-
-
+var saveInDb = function (tweet) {
+		var tweetObj = {};
+		tweetObj.text =  tweet.text;
+		tweetObj.date = tweet.created_at;
+		var tweet = new items.Item(tweetObj);
+		tweet.save(function (err, tweet) {
+		if(err) return console.error(err);
+			console.log('saved in DB');
+		});
+	}
 // get data from twitter API
-var getTweets = function() {
-	var options = {
-		screen_name: 'realDonaldTrump',
-		count: 200
+// var getTweets = function() {
+// 	var options = {
+// 		screen_name: 'realDonaldTrump',
+// 		count: 200
 
-	};
+// 	};
+// 	T.get('statuses/user_timeline', options, function(err, data) {
+// 		if(err) {console.error(err)};
+// 		for(var i = 0; i < 5; i++) {
+// 			var tweetObj = {};
+// 			tweetObj.text =  data[i].text;
+// 			tweetObj.date = data[i].created_at;
 
-	T.get('statuses/user_timeline', options, function(err, data) {
-		if(err) {console.error(err)};
-		for(var i = 0; i < 5; i++) {
-			var tweetObj = {};
-			tweetObj.text =  data[i].text;
-			tweetObj.date = data[i].created_at;
+// 			var tweet = new items.Item(tweetObj);
 
-			var tweet = new items.Item(tweetObj);
+// 			tweet.save(function (err, tweet) {
+// 				if(err) return console.error(err);
+// 				//console.log('saved the tweets in db: ', tweet);
 
-			tweet.save(function (err, tweet) {
-				if(err) return console.error(err);
-				//console.log('saved the tweets in db: ', tweet);
-
-			});
+// 			});
 			
-		}
-	});	
-}
+// 		}
+// 	});	
+// }
 
 
 var async = require('async');
@@ -130,7 +135,11 @@ var AllTweets = function (done) {
 
 
 
-
+AllTweets (function(input) {
+				for(let i = 0; i < input.length; i++) {
+					saveInDb(input[i]);
+				}
+			});
 
 
 
