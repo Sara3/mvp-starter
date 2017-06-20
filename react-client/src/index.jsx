@@ -24,9 +24,6 @@ class App extends React.Component {
         console.log('err', err);
       }
     });
-
-
-
   }
 
   search (input) {
