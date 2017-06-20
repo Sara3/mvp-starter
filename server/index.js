@@ -41,11 +41,14 @@ app.post('/items', function(req, res) {
 		} else {
 			res.json(data);
 			console.log('recieved data',data);
-			// AllTweets (function(input) {
-			// 	for(let i = 0; i < input.length; i++) {
-			// 		saveInDb(input[i]);
-			// 	}
-			// });
+			//AllTweets (function(input) {
+				// for(let i = 0; i < input.length; i++) {
+				// 	saveInDb(input[i]);
+
+
+			//	console.log('input ->'  ,input.length);
+				// }
+			//});
 
 		}
 	});
@@ -128,9 +131,11 @@ var AllTweets = function (done) {
             });
             function printTweets(data)
             {
-                 for (var i = 0; i < data.length; i++)
+            for (var i = 0; i < data.length; i++)
             {
-                console.log(count + ' ' + data[i].text);
+            	saveInDb(data[i]);
+
+				        console.log(count + ' ' + data[i].text);
                 count++;
             }
             }
